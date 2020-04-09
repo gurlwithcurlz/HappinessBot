@@ -5,12 +5,13 @@ require 'json'
 post '/thanks' do
     status 200
     post_tq params[:text]
-    params[:user_id]+', and thank you for spreading some happiness!'
+    params[:user_name]+', and thank you for spreading some happiness!'
 end
 
 post '/happy' do
     status 200
     post_happy params[:text]
+    params[:user_name]+', "you''re spreading the love!"
 end
 
 def post_tq message

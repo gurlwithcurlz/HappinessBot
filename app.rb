@@ -16,7 +16,7 @@ def post_tq message
 
   slack_webhook = ENV['SLACK_WEBHOOK_URL']
 
-  HTTParty.post slack_webhook, body:
+  quiet=HTTParty.post slack_webhook, body:
   {"text" => 'Thanks '+ message,
    "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}

@@ -11,7 +11,7 @@ end
 post '/happy' do
     status 200
     post_happy params[:text]
-    params[:user_name]+', "you''re spreading the love!"
+    params[:user_name]+',you are spreading the love!'
 end
 
 def post_tq message

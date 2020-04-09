@@ -46,7 +46,7 @@ end
 def post_happy_gif message
 
   slack_webhook = ENV['SLACK_WEBHOOK_URL']
-  giphy_api_key = 8x96A5YlCJRCqplr4gjULJW13sLtY6FV
+  giphy_api_key = '8x96A5YlCJRCqplr4gjULJW13sLtY6FV'
   gif_url = "http://api.giphy.com/v1/gifs/random?q=&tag="+ message+ "&api_key=" + giphy_api_key + "&limit=1&rating=g"
 
   response = HTTParty.get(gif_url)

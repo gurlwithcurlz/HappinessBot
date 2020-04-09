@@ -3,15 +3,15 @@ require 'httparty'
 require 'json'
 
 post '/thanks' do
-    status 200
-    post_tq params[:text]
-    params[:user_name]+', and thank you for spreading some happiness!'
+  status 200
+  post_tq params[:text]
+  params[:user_name]+', and thank you for spreading some happiness!'
 end
 
 post '/happy' do
-    status 200
-    post_happy params[:text]
-    params[:user_name]+',you are spreading the love!'
+  status 200
+  post_happy params[:text]
+  params[:user_name]+',you are spreading the love!'
 end
 
 post '/happy-gif' do
@@ -26,7 +26,7 @@ def post_tq message
 
   quiet=HTTParty.post slack_webhook, body:
   {"text" => 'Thanks '+ message,
-   "username" => "HappinessBot"}.to_json,
+    "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}
 
 end
@@ -38,7 +38,7 @@ def post_happy message
 
   HTTParty.post slack_webhook, body:
   {"text" => message,
-   "username" => "HappinessBot"}.to_json,
+    "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}
 
 end
@@ -51,10 +51,10 @@ def post_happy_gif message
   response = HTTParty.get(gif_url)
 
   HTTParty.post slack_webhook, body:
-  {"text" => message,
-   "username" => "HappinessBot",
-   "type" => "gif"
-   "embed_url" => response.data.embed_url.to_s}.to_json,
-   headers: {'content-type' => 'application/json'}
+  {"type" => "image",
+  "image_url" => response.data.embed_url,
+  "username" => "HappinessBot",
+  "alt_text" => message}.to_json,
+    headers: {'content-type' => 'application/json'}
 
 end

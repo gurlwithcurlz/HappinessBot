@@ -2,7 +2,7 @@ require 'sinatra'
 require 'httparty'
 require 'json'
 
-get '/anonymize' do
+post '/anonymize' do
     status 200
     post_tq params[:text], params[:channel_id]
 end

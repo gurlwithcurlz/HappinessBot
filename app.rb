@@ -51,8 +51,9 @@ def post_happy_gif message
   response = HTTParty.get(gif_url)
 
   HTTParty.post slack_webhook, body:
-  {"text" => message +  ' ' + response.embed_url,
-   "username" => "HappinessBot"}.to_json,
+  {"text" => message,
+   "username" => "HappinessBot",
+   "embed_url" => response.embed_url.to_s}.to_json,
    headers: {'content-type" => 'application/json'}
 
 end

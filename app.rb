@@ -47,14 +47,12 @@ def post_happy_gif message
 
   slack_webhook = ENV['SLACK_WEBHOOK_URL']
   giphy_api_key = '8x96A5YlCJRCqplr4gjULJW13sLtY6FV'
-  gif_url = "http://api.giphy.com/v1/gifs/random?q=&tag="+ message+ "&api_key=" + giphy_api_key + "&limit=1&rating=g"
-
+  gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ message+ "&rating=G"
   response = HTTParty.get(gif_url)
 
   HTTParty.post slack_webhook, body:
-  {"text" => message,
-   "username" => "HappinessBot",
-   "embed_url" => response.embed_url}.to_json,
+  {"text" => message +  ' ' + response.embed_url,
+   "username" => "HappinessBot"}.to_json,
    headers: {'content-type" => 'application/json'}
 
 end

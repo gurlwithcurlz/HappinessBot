@@ -3,8 +3,8 @@ require 'httparty'
 require 'json'
 
 get '/anonymize' do
-  post_tq params[:text], params[:channel_id]
-  status 200
+    status 200
+    post_tq params[:text], params[:channel_id]
 end
 
 def post_tq message, channel_id

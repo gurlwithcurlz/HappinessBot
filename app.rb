@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'httparty'
 require 'json'
+require 'rest-client'
 
 post '/thanks' do
   status 200
@@ -52,9 +53,10 @@ def post_happy_gif message
 
   HTTParty.post slack_webhook, body:
   {"type" => "image",
+  "text" => message,
   "image_url" => response.data.embed_url,
   "username" => "HappinessBot",
-  "alt_text" => message}.to_json,
+  "alt_text" => response.data.title}.to_json,
     headers: {'content-type' => 'application/json'}
 
 end

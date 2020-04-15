@@ -17,7 +17,7 @@ end
 
 post '/happy-gif' do
   status 200
-  post_happy_gif params[:text]
+  # post_happy_gif params[:text]
   params[:user_name]+',you like to giphy!'
 end
 

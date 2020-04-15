@@ -49,10 +49,11 @@ def post_happy_gif message
   giphy_api_key = '8x96A5YlCJRCqplr4gjULJW13sLtY6FV'
   gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ message+ "&rating=G"
   response = HTTParty.get(gif_url)
+  body = JSON.parse(response)
 
   HTTParty.post slack_webhook, body:
   {"type" => "image",
-  "image_url" => puts response[0]["data"]["embed_url"],
+  "image_url" => body["data"]["embed_url"],
   "alt_text" => message}.to_json,
     headers: {'content-type' => 'application/json'}
 

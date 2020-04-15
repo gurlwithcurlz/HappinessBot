@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'httparty'
 require 'json'
-require 'rest-client'
 
 post '/thanks' do
   status 200
@@ -15,7 +14,7 @@ post '/happy' do
   params[:user_name]+',you are spreading the love!'
 end
 
-post '/happy-gif' do
+post '/happygif' do
   status 200
   post_happy params[:text]
   params[:user_name]+',you like to giphy!'

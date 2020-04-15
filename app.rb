@@ -55,7 +55,7 @@ def post_happy_gif message
   {"type" => "image",
   "image_url" => payload["data"]["embed_url"],
   "alt_text" => message,
-  "text" => payload["data"]["title"]
+  "text" => payload["data"]["title"],
   "username" => "HappinessBot"}.to_json,
     headers: {'content-type' => 'application/json'}
 

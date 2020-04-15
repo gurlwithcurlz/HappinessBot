@@ -54,7 +54,9 @@ def post_happy_gif message
   HTTParty.post slack_webhook, body:
   {"type" => "image",
   "image_url" => payload["data"]["embed_url"],
-  "alt_text" => message}.to_json,
+  "alt_text" => message,
+  "text" => payload["data"]["title"]
+  "username" => "HappinessBot"}.to_json,
     headers: {'content-type' => 'application/json'}
 
 end

@@ -61,11 +61,23 @@ def post_happy_gif message
 
 # Convert hash to to_json
 
+image_title = []
+image_title << {"type" => "plain_text",
+                "text" => response["data"]["title"] + "Powered by Giphy"}
+
 image_block = []
-image_block << {"type"=>"image", "image_url"=>response["data"]["images"]["downsized_medium"]["url"], "alt_text"=>message}
+image_block << {"type"=>"image",
+  "image_url"=>response["data"]["images"]["downsized"]["url"],
+  "alt_text"=>message,
+  "title"=>image_title}
+
+text_info=[]
+text_info<< {"type"=>"plain_text", "text"=>message}
+text_block = []
+text_block << {"type"=>"section", "text"=>text_info}
 
 params_hash={}
-params_hash[:text]=message
+params_hash[:blocks]=text_block
 params_hash[:blocks]=image_block
 
 HTTParty.post slack_webhook,

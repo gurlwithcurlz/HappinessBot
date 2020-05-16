@@ -52,7 +52,7 @@ def post_happy_gif message
   payload = response.parsed_response
 
   HTTParty.post slack_webhook, body:
-  {"text" =>"test"",
+  {"text" =>"test",
    "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}}
 

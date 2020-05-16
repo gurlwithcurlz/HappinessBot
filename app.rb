@@ -34,7 +34,7 @@ end
 
 def post_happy message
 
-  slack_webhook = ENV['SLACK_WEBHOOK_URL_2']
+  slack_webhook = ENV['SLACK_WEBHOOK_URL']
 
   HTTParty.post slack_webhook, body:
   {"text" => message,
@@ -45,7 +45,7 @@ end
 
 def post_happy_gif message
 
-  slack_webhook = "https://hooks.slack.com/services/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"
+  slack_webhook = ENV['SLACK_WEBHOOK_URL']
   giphy_api_key = '8x96A5YlCJRCqplr4gjULJW13sLtY6FV'
   gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ message+ "&rating=G"
   response = HTTParty.get(gif_url, format: :json)

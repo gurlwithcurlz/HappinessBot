@@ -60,7 +60,7 @@ def post_happy_gif message
   {"blocks" => [
       {"type" => "image",
       "image_url" => response["data"]["images"]["downsized_medium"]["url"],
-    }.to_json]}.to_json,
+    }]}.to_json,
   "username" => "HappinessBot"}.to_json,
     headers: {'content-type' => 'application/json'}
 

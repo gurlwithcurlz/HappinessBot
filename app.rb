@@ -49,12 +49,28 @@ def post_happy_gif message
   giphy_api_key = '8x96A5YlCJRCqplr4gjULJW13sLtY6FV'
   gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ message+ "&rating=G"
   response = HTTParty.get(gif_url)
+
+
   # payload = response.parsed_response
 
-  HTTParty.post slack_webhook, body:
-  {"text" => message + "\n" + response["data"]["images"]["downsized"]["url"] + "\nPowered by Giphy", 
-   "username" => "HappinessBot"}.to_json,
-    headers: {'content-type'=>'application/json'}
+# THE FOLLOWING WORKS
+  # HTTParty.post slack_webhook, body:
+  # {"text" => message + "\n" + response["data"]["images"]["downsized"]["url"] + "\nPowered by Giphy",
+  #  "username" => "HappinessBot"}.to_json,
+  #   headers: {'content-type'=>'application/json'}
+
+# Convert hash to to_json
+
+image_block = []
+image_block << {"type"=>"image", "image_url"=>response["data"]["images"]["downsized_medium"]["url"]}
+
+params_hash={}
+params_hash[:text]=message
+params_hash[:blocks]=image_block
+
+HTTParty.post slack_webhook,
+              body:params_hash.to_json,
+              headers: {'content-type' => 'application/json'}
 
   # HTTParty.post slack_webhook, body:
   # {"text" => message,

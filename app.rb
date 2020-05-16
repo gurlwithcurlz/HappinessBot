@@ -61,8 +61,8 @@ def post_happy_gif message
 
 # Convert hash to to_json
 
-image_block = []
-image_block << {"type"=>"image", "image_url"=>response["data"]["images"]["downsized_medium"]["url"]}
+# image_block = {}
+image_block = {"type"=>"image", "image_url"=>response["data"]["images"]["downsized_medium"]["url"]}
 
 params_hash={}
 params_hash[:text]=message

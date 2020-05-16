@@ -1,6 +1,6 @@
 #!/bin/sh
 
 git add .
-git commit -m "Gif testing"
+git commit -m "Gif integration"
 git push
 git push heroku master

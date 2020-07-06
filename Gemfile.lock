@@ -10,7 +10,11 @@ GEM
     multi_xml (0.6.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+<<<<<<< HEAD
     rack (~> 2.2, >= 2.2.3)
+=======
+    rack (2.2.2)
+>>>>>>> parent of 7659eeb... Bumped up rack dependency
     rack-protection (2.0.8.1)
       rack
     ruby2_keywords (0.0.2)

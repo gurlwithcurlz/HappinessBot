@@ -89,6 +89,8 @@ def post_happy_gif_test response_url, message
   gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ message+ "&rating=G"
   response = HTTParty.get(gif_url)
 
+  #
+
   # Image block
   image_title = {"type" => "plain_text",
                 "text" => response["data"]["title"] + " Powered by Giphy"}
@@ -107,7 +109,7 @@ def post_happy_gif_test response_url, message
   blocks << text_block
   blocks << image_block
 
-  params_hash={}
+  params_hash={"text" => "Do you want to post this gif?"}
   params_hash[:blocks]=blocks
 
   HTTParty.post slack_webhook,

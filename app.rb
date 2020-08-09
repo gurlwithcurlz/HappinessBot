@@ -89,8 +89,9 @@ def post_happy_gif_test response_url, message
   gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ message+ "&rating=G"
   response = HTTParty.get(gif_url)
 
-  # Question
-  question = {"type" => "plain_text", "text" => "Do you want to post this gif?"}
+  # Text block
+  text_info = {"type"=>"plain_text", "text"=>"Are you happy with this gif?"}
+  text_block = {"type"=>"section", "text"=>text_info}
 
   # Image block
   image_title = {"type" => "plain_text",
@@ -101,13 +102,8 @@ def post_happy_gif_test response_url, message
   "alt_text"=>message,
   "title"=>image_title}
 
-  # Text block
-  text_info = {"type"=>"plain_text", "text"=>message}
-  text_block = {"type"=>"section", "text"=>text_info}
-
   # Combine blocks
   blocks=[]
-  blocks << question 
   blocks << text_block
   blocks << image_block
 

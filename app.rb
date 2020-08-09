@@ -109,7 +109,7 @@ def post_happy_gif_test response_url, message
   blocks << text_block
   blocks << image_block
 
-  params_hash={"text" => "Do you want to post this gif?"}
+  params_hash={"type" => "plain_text", "text" => "Do you want to post this gif?"}
   params_hash[:blocks]=blocks
 
   HTTParty.post slack_webhook,

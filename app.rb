@@ -93,6 +93,21 @@ def post_happy_gif_test response_url, message
   text_info = {"type"=>"plain_text", "text"=>"Are you happy with this gif?"}
   text_block = {"type"=>"section", "text"=>text_info}
 
+  # Attachment block
+  actions_info = {
+    "name" => "gif_yes",
+    "text" => "yes",
+    "type" => "button",
+    "value" => "gif_yes"
+  }
+
+  attachments_block = {
+    "text" => "Are you happy with this gif?"
+    "fallback" => "Sorry, HappinessBot could not find the right gif",
+    "callback_id" => "happygif",
+    "actions" => actions_info
+  }
+
   # Image block
   image_title = {"type" => "plain_text",
                 "text" => response["data"]["title"] + " Powered by Giphy"}
@@ -106,6 +121,7 @@ def post_happy_gif_test response_url, message
   blocks=[]
   blocks << text_block
   blocks << image_block
+  blocks << attachments_block
 
   params_hash={}
   params_hash[:blocks]=blocks

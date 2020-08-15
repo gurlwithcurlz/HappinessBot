@@ -134,13 +134,13 @@ def post_happy_gif_test response_url, message
   blocks=[]
   # blocks << text_block
   # blocks << image_block
-  blocks << attachments_block
+  blocks << actions_block
 
   params_hash={}
   params_hash[:blocks]=blocks
 
   HTTParty.post slack_webhook,
-              body:attachments_block.to_json,
+              body:blocks.to_json,
               headers: {'content-type' => 'application/json'}
 
 end

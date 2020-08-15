@@ -118,13 +118,16 @@ def post_happy_gif_test response_url, message
     "value" => "gif_no"
   }
 
-  actions_block = {
-    "type" => "actions"
-  }
+
   action_elements=[]
   action_elements << button_yes
-  actions_elements << button_no
-  actions_block[:elements]=actions_elements
+  action_elements << button_no
+
+  actions_block = {
+    "type" => "actions",
+    "elements" => action_elements
+  }
+  # actions_block[:elements]=actions_elements
 
   # Image block
   image_title = {"type" => "plain_text",
@@ -137,8 +140,8 @@ def post_happy_gif_test response_url, message
 
   # Combine blocks
   blocks=[]
-  # blocks << text_block
-  # blocks << image_block
+  blocks << text_block
+  blocks << image_block
   blocks << actions_block
 
   params_hash={}

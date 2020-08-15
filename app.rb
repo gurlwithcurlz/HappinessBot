@@ -130,7 +130,7 @@ def post_happy_gif_test response_url, message
   blocks=[]
   blocks << text_block
   blocks << image_block
-  blocks << actions_block
+  # blocks << actions_block
 
   params_hash={}
   params_hash[:blocks]=blocks

@@ -89,9 +89,9 @@ def post_happy_gif_test response_url, message
   gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ message+ "&rating=G"
   response = HTTParty.get(gif_url)
 
-  # # Text block
-  # text_info = {"type"=>"plain_text", "text"=>"Are you happy with this gif?"}
-  # text_block = {"type"=>"section", "text"=>text_info}
+  # Text block
+  text_info = {"type"=>"plain_text", "text"=>"Are you happy with this gif?"}
+  text_block = {"type"=>"section", "text"=>text_info}
 
   # Attachment block
   action_text = {
@@ -117,26 +117,26 @@ def post_happy_gif_test response_url, message
   #   "actions" => actions_info
   # }
 
-  # # Image block
-  # image_title = {"type" => "plain_text",
-  #               "text" => response["data"]["title"] + " Powered by Giphy"}
-  #
-  # image_block = {"type"=>"image",
-  # "image_url"=>response["data"]["images"]["downsized"]["url"],
-  # "alt_text"=>message,
-  # "title"=>image_title}
+  # Image block
+  image_title = {"type" => "plain_text",
+                "text" => response["data"]["title"] + " Powered by Giphy"}
+
+  image_block = {"type"=>"image",
+  "image_url"=>response["data"]["images"]["downsized"]["url"],
+  "alt_text"=>message,
+  "title"=>image_title}
 
   # Combine blocks
   blocks=[]
-  # blocks << text_block
-  # blocks << image_block
+  blocks << text_block
+  blocks << image_block
   blocks << actions_block
 
   params_hash={}
   params_hash[:blocks]=blocks
 
   HTTParty.post slack_webhook,
-              body:actions_block.to_json,
+              body:params_hash.to_json,
               headers: {'content-type' => 'application/json'}
 
 end

@@ -94,10 +94,15 @@ def post_happy_gif_test response_url, message
   # text_block = {"type"=>"section", "text"=>text_info}
 
   # Attachment block
+  action_text = {
+    "type" => "plain_text",
+    "text" => "yes"
+  }
   actions_info = {
-    "name" => "gif_yes",
-    "text" => "yes",
     "type" => "button",
+    "text" => action_text,
+    "action_id" => "gif_yes_button",
+    "name" => "gif_yes",
     "value" => "gif_yes"
   }
 

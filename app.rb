@@ -121,7 +121,7 @@ def post_happy_gif_test response_url, message
 
   action_elements=[]
   action_elements << button_yes
-  # action_elements << button_no
+  action_elements << button_no
 
   actions_block = {
     "type" => "actions",

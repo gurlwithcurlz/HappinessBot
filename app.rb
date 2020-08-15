@@ -110,12 +110,6 @@ def post_happy_gif_test response_url, message
     "type" => "actions",
     "elements" => button_element,
   }
-  # attachments_block = {
-  #   "text" => "Are you happy with this gif?"
-  #   "fallback" => "Sorry, HappinessBot could not find the right gif",
-  #   "callback_id" => "happygif",
-  #   "actions" => actions_info
-  # }
 
   # Image block
   image_title = {"type" => "plain_text",
@@ -128,8 +122,8 @@ def post_happy_gif_test response_url, message
 
   # Combine blocks
   blocks=[]
-  blocks << text_block
-  blocks << image_block
+  # blocks << text_block
+  # blocks << image_block
   blocks << actions_block
 
   params_hash={}

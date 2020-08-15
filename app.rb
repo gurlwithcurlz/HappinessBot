@@ -109,10 +109,6 @@ def post_happy_gif_test response_url, message
   actions_block = {
     "type" => "actions",
     "elements" => actions_info,
-    "text" => "Are you happy with this gif?"
-    "fallback" => "Sorry, HappinessBot could not find the right gif",
-    "callback_id" => "happygif",
-    "actions" => actions_info
   }
   # attachments_block = {
   #   "text" => "Are you happy with this gif?"

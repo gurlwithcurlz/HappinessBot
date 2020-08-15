@@ -123,11 +123,9 @@ def post_happy_gif_test response_url, message
   action_elements << button_yes
   action_elements << button_no
 
-  actions_block = {
-    "type" => "actions",
-    "elements" => action_elements
-  }
-  # actions_block[:elements]=actions_elements
+  actions_block = {}
+  actions_block[:type]="actions"
+  actions_block[:elements]=actions_elements
 
   # Image block
   image_title = {"type" => "plain_text",

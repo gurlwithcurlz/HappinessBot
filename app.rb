@@ -162,37 +162,42 @@ end
 
 def post_happy_gif_test_response payload
 
-  actions = payload[:actions]
-  if actions[:action_id] == gif_no_button # User didn't like gif
-    return
-  gif_url = actions[:value]
+  # actions = payload[:actions]
+  # if actions[:action_id] == gif_no_button # User didn't like gif
+  #   return
+  # gif_url = actions[:value]
+  #
+  # slack_webhook = ENV['TEST_WEBHOOK_URL']
+  #
+  #
+  # # Image block
+  # image_title = {"type" => "plain_text",
+  #                 "text" =>" Powered by Giphy"}
+  #
+  # image_block = {"type"=>"image",
+  #   "image_url"=>gif_url,
+  #   "alt_text"=>'test',
+  #   "title"=>image_title}
+  #
+  # # Text block
+  # text_info = {"type"=>"plain_text", "text"=>'test'}
+  # text_block = {"type"=>"section", "text"=>text_info}
+  #
+  # # Combine blocks
+  # blocks=[]
+  # blocks << text_block
+  # blocks << image_block
+  #
+  # params_hash={}
+  # params_hash[:blocks]=blocks
 
-  slack_webhook = ENV['TEST_WEBHOOK_URL']
+  # HTTParty.post slack_webhook,
+  #               body:params_hash.to_json,
+  #               headers: {'content-type' => 'application/json'}
 
-
-  # Image block
-  image_title = {"type" => "plain_text",
-                  "text" =>" Powered by Giphy"}
-
-  image_block = {"type"=>"image",
-    "image_url"=>gif_url,
-    "alt_text"=>'test',
-    "title"=>image_title}
-
-  # Text block
-  text_info = {"type"=>"plain_text", "text"=>'test'}
-  text_block = {"type"=>"section", "text"=>text_info}
-
-  # Combine blocks
-  blocks=[]
-  blocks << text_block
-  blocks << image_block
-
-  params_hash={}
-  params_hash[:blocks]=blocks
-
-  HTTParty.post slack_webhook,
-                body:params_hash.to_json,
-                headers: {'content-type' => 'application/json'}
+  HTTParty.post slack_webhook, body:
+  {"text" => message,
+    "username" => "HappinessBot"}.to_json,
+    headers: {'content-type'=>'application/json'}
 
 end

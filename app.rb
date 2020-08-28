@@ -164,7 +164,7 @@ def post_happy_gif_test_response payload
   puts payload
   payload_type = payload.is_a?(Hash)
   puts "Payload is hash = " + payload_type.to_s
-  payload_type = payload.is_a?(String)
+  payload_type = payload.is_a? String
   puts "Payload is string = " + payload_type.to_s
   puts "Because"
   # message = payload[:actions][:action_id]

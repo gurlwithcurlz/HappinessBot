@@ -28,7 +28,7 @@ end
 
 post '/happy_gif_test_response' do
   status 200
-  post_happy_gif_test_response JSON.parse(params[:payload])
+  post_happy_gif_test_response params[:payload]
   params[:user_name]+", I've posted your gif. Glad you liked it!"
 
 
@@ -199,7 +199,7 @@ def post_happy_gif_test_response payload
   #               headers: {'content-type' => 'application/json'}
 
   HTTParty.post slack_webhook, body:
-  {"text" => payload[:type],
+  {"text" => payload[:type].to_s,
     "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}
 

@@ -167,6 +167,10 @@ def post_happy_gif_test_response payload
   payload_type = payload.is_a? String
   puts "Payload is string = " + payload_type.to_s
   puts "Dang these bugs"
+  JSON.parse(payload)
+  puts payload
+  payload_type = payload.is_a?(Hash)
+
   # message = payload[:actions][:action_id]
 
   # actions = payload[:actions]

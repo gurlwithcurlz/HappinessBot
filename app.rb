@@ -28,7 +28,7 @@ end
 
 post '/happy_gif_test_response' do
   status 200
-  post_happy_gif_test_response
+  post_happy_gif_test_response params[:payload]
   params[:user_name]+", I've posted your gif. Glad you liked it!"
 
 
@@ -160,10 +160,10 @@ def post_happy_gif_test response_url, message
 
 end
 
-def post_happy_gif_test_response
+def post_happy_gif_test_response payload
 
   slack_webhook = ENV['TEST_WEBHOOK_URL']
-  message = "eeek"
+
   # actions = payload[:actions]
   # if actions[:action_id] == gif_no_button # User didn't like gif
   #   return

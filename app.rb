@@ -28,7 +28,7 @@ end
 
 post '/happy_gif_test_response' do
   status 200
-  post_happy_gif_test_response payload
+  post_happy_gif_test_response params[:body][:payload]
   params[:user_name]+", I've posted your gif. Glad you liked it!"
 
 

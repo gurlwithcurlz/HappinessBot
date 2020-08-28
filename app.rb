@@ -23,15 +23,13 @@ end
 post '/happygif-test' do
   status 200
   post_happy_gif_test params[:response_url], params[:text]
-  params[:user_name]+', hang on...just getting some gif options..'
+  params[:user_name]+"..just fyi, Selina is really happy I'm now interactive!"
 end
 
 post '/happy_gif_test_response' do
   status 200
   post_happy_gif_test_response params[:payload]
-  ", I've posted your gif. Glad you liked it!"
-
-
+  ""
 end
 
 def post_tq message
@@ -199,7 +197,7 @@ def post_happy_gif_test_response payload
   #               headers: {'content-type' => 'application/json'}
 
   HTTParty.post slack_webhook, body:
-  {"text" => "why does this work indeed?",
+  {"text" => payload[:type],
     "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}
 

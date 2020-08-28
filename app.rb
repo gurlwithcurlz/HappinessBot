@@ -135,8 +135,6 @@ def post_happy_gif_test response_url, message
     "type" => "actions",
     "elements" => action_elements
   }
-  # actions_block[:type]="actions"
-  # actions_block[:elements]=action_elements
 
   # Image block
   image_title = {"type" => "plain_text",
@@ -162,10 +160,10 @@ def post_happy_gif_test response_url, message
 
 end
 
-def post_happy_gif_test_response
+def post_happy_gif_test_response payload
 
   actions = payload[:actions]
-  if actions[:action_id] == gif_no_button # User didn't like gif 
+  if actions[:action_id] == gif_no_button # User didn't like gif
     return
   gif_url = actions[:value]
 

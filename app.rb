@@ -163,7 +163,8 @@ end
 def post_happy_gif_test_response payload
 
   slack_webhook = ENV['TEST_WEBHOOK_URL']
-  message = payload[:actions][:action_id]
+  message = "test"
+  # message = payload[:actions][:action_id]
 
   # actions = payload[:actions]
   # if actions[:action_id] == gif_no_button # User didn't like gif

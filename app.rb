@@ -169,6 +169,7 @@ def post_happy_gif_test_response payload
   JSON.parse(payload)
   puts payload
   payload_type = payload.is_a?(Hash)
+  puts payload[:type]
 
   # message = payload[:actions][:action_id]
 

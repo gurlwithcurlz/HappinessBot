@@ -163,7 +163,7 @@ end
 def post_happy_gif_test_response payload_json
 
   slack_webhook = ENV['TEST_WEBHOOK_URL']
-  payload = JSON.parse(payload_json)
+  payload = JSON.parse(payload_json.to_s)
   message = payload["type"]
   # message = payload[:actions][:action_id]
 

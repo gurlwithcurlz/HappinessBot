@@ -28,7 +28,7 @@ end
 
 post '/happy_gif_test_response' do
   status 200
-  post_happy_gif_test_response 
+  post_happy_gif_test_response
   params[:user_name]+", I've posted your gif. Glad you liked it!"
 
 
@@ -162,6 +162,7 @@ end
 
 def post_happy_gif_test_response payload
 
+  message = "eeek"
   # actions = payload[:actions]
   # if actions[:action_id] == gif_no_button # User didn't like gif
   #   return

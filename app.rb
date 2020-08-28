@@ -26,11 +26,19 @@ post '/happygif-test' do
   params[:user_name]+', hang on...just getting some gif options..'
 end
 
+post '/happygif_test_response' do
+  status 200
+  post_happy_gif_test_response params[:payload]
+  params[:user_name]+", I've posted your gif. Glad you liked it!"
+
+
+end
+
 def post_tq message
 
   slack_webhook = ENV['SLACK_WEBHOOK_URL']
 
-  quiet=HTTParty.post slack_webhook, body:
+  HTTParty.post slack_webhook, body:
   {"text" => 'Thanks '+ message,
     "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}
@@ -103,7 +111,7 @@ def post_happy_gif_test response_url, message
     "type" => "button",
     "text" => button_text_yes,
     "action_id" => "gif_yes_button",
-    "value" => "gif_yes"
+    "value" => gif_url
   }
 
   button_text_no = {
@@ -151,5 +159,42 @@ def post_happy_gif_test response_url, message
   HTTParty.post slack_webhook,
               body:params_hash.to_json,
               headers: {'content-type' => 'application/json'}
+
+end
+
+def post_happy_gif_test_response
+
+  actions = payload[:actions]
+  if actions[:action_id] == gif_no_button # User didn't like gif 
+    return
+  gif_url = actions[:value]
+
+  slack_webhook = ENV['TEST_WEBHOOK_URL']
+
+
+  # Image block
+  image_title = {"type" => "plain_text",
+                  "text" =>" Powered by Giphy"}
+
+  image_block = {"type"=>"image",
+    "image_url"=>gif_url,
+    "alt_text"=>'test',
+    "title"=>image_title}
+
+  # Text block
+  text_info = {"type"=>"plain_text", "text"=>'test'}
+  text_block = {"type"=>"section", "text"=>text_info}
+
+  # Combine blocks
+  blocks=[]
+  blocks << text_block
+  blocks << image_block
+
+  params_hash={}
+  params_hash[:blocks]=blocks
+
+  HTTParty.post slack_webhook,
+                body:params_hash.to_json,
+                headers: {'content-type' => 'application/json'}
 
 end

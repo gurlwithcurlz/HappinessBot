@@ -1,6 +1,6 @@
 #!/bin/sh
 
 git add .
-git commit -m "Test"
+git commit -m "Hackday PL 28082020"
 git push
 git push heroku master

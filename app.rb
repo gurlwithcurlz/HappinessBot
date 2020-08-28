@@ -160,7 +160,7 @@ def post_happy_gif_test response_url, message
 
 end
 
-def post_happy_gif_test_response payload
+def post_happy_gif_test_response 
 
   message = "eeek"
   # actions = payload[:actions]

@@ -162,18 +162,18 @@ def post_happy_gif_test response_url, message
 
 end
 
-def post_happy_gif_test_response payload
+def post_happy_gif_test_response button
 
   slack_webhook = ENV['TEST_WEBHOOK_URL']
-  puts payload
-  payload_type = payload.is_a?(Hash)
-  puts "Payload is hash = " + payload_type.to_s
-  payload_type = payload.is_a? String
-  puts "Payload is string = " + payload_type.to_s
-  JSON.parse(payload)
-  puts payload
-  payload_type = payload.is_a?(Hash) # I think the issue is that JSON can't parse the [ ] brackets in the string...
-  puts payload[:type]
+  # puts payload
+  # payload_type = payload.is_a?(Hash)
+  # puts "Payload is hash = " + payload_type.to_s
+  # payload_type = payload.is_a? String
+  # puts "Payload is string = " + payload_type.to_s
+  # JSON.parse(payload)
+  # puts payload
+  # payload_type = payload.is_a?(Hash) # I think the issue is that JSON can't parse the [ ] brackets in the string...
+  # puts payload[:type]
 
   # message = payload[:actions][:action_id]
   #
@@ -210,7 +210,7 @@ def post_happy_gif_test_response payload
   #               headers: {'content-type' => 'application/json'}
 
   HTTParty.post slack_webhook, body:
-  {"text" => 'why does this work?',
+  {"text" => params[:payload][:actions][:action_id],
     "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}
 

@@ -162,7 +162,7 @@ def post_happy_gif_test response_url, message
 
 end
 
-def post_happy_gif_test_response button
+def post_happy_gif_test_response payload
 
   slack_webhook = ENV['TEST_WEBHOOK_URL']
   # puts payload
@@ -210,7 +210,7 @@ def post_happy_gif_test_response button
   #               headers: {'content-type' => 'application/json'}
 
   HTTParty.post slack_webhook, body:
-  {"text" => params[:payload][:actions][:action_id],
+  {"text" => payload[:actions][:action_id],
     "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}
 

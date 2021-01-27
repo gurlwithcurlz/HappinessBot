@@ -26,7 +26,7 @@ post '/happygif-test' do
   params[:user_name]+"..just fyi, Selina is really happy I'm now interactive!"
 end
 
-post '/happygif-test-response' do
+post '/happygif_test_response' do
   status 200
   post_happy_gif_test_response params[:payload]
   ""

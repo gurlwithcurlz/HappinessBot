@@ -113,7 +113,7 @@ def post_happy_gif_test response_url, message
     "type" => "button",
     "text" => button_text_yes,
     "action_id" => "gif_yes_button",
-    "value" => response["data"]["images"]["downsized"]["url"]
+    "value" => "gif_yes"
   }
 
   button_text_no = {

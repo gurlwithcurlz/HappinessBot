@@ -3,4 +3,4 @@
 git add .
 git commit -m "Hackday PL 27012021"
 git push
-git push heroku master
+git push heroku git-integration:master

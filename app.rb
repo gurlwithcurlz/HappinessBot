@@ -165,6 +165,7 @@ end
 def post_happy_gif_test_response payload
 
   slack_webhook = ENV['TEST_WEBHOOK_URL']
+  # payload = JSON.parse(payload)
   # puts payload
   # payload_type = payload.is_a?(Hash)
   # puts "Payload is hash = " + payload_type.to_s
@@ -210,7 +211,7 @@ def post_happy_gif_test_response payload
   #               headers: {'content-type' => 'application/json'}
 
   HTTParty.post slack_webhook, body:
-  {"text" => payload[:actions][:action_id],
+  {"text" => puts(payload.to_s),
     "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}
 

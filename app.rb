@@ -165,12 +165,12 @@ end
 def post_happy_gif_test_response payload
 
   slack_webhook = ENV['TEST_WEBHOOK_URL']
-  # payload = JSON.parse(payload)
-  # puts payload
-  # payload_type = payload.is_a?(Hash)
-  # puts "Payload is hash = " + payload_type.to_s
-  # payload_type = payload.is_a? String
-  # puts "Payload is string = " + payload_type.to_s
+  payload = JSON.parse(payload)
+  puts payload
+  payload_type = payload.is_a?(Hash)
+  puts "Payload is hash = " + payload_type.to_s
+  payload_type = payload.is_a?(String)
+  puts "Payload is string = " + payload_type.to_s
   # JSON.parse(payload)
   # puts payload
   # payload_type = payload.is_a?(Hash) # I think the issue is that JSON can't parse the [ ] brackets in the string...
@@ -211,7 +211,7 @@ def post_happy_gif_test_response payload
   #               headers: {'content-type' => 'application/json'}
 
   HTTParty.post slack_webhook, body:
-  {"text" => payload.to_s,
+  {"text" => 'wtf is payload',
     "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}
 

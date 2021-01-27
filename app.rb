@@ -211,7 +211,7 @@ def post_happy_gif_test_response payload
   #               headers: {'content-type' => 'application/json'}
 
   HTTParty.post slack_webhook, body:
-  {"text" => puts(payload.to_s),
+  {"text" => payload.to_s,
     "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}
 

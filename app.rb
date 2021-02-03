@@ -168,7 +168,7 @@ def post_happy_gif_test_response payload
   payload = JSON.parse(payload)
   puts payload
   payload_type = payload.is_a?(Hash)
-  puts "Payload is hash = " + payload_type.to_s
+  puts "Ppayload is hash = " + payload_type.to_s
   payload_type = payload.is_a?(String)
   puts "Payload is string = " + payload_type.to_s
   # JSON.parse(payload)
@@ -216,9 +216,9 @@ def post_happy_gif_test_response payload
   actions_type = actions.is_a?(String)
   puts "actions is string = " + actions.to_s
 
-  # HTTParty.post slack_webhook, body:
-  # {"text" => actions[:text][:value].to_s,
-  #   "username" => "HappinessBot"}.to_json,
-  #   headers: {'content-type'=>'application/json'}
+  HTTParty.post slack_webhook, body:
+  {"text" => actions[:text][:value].to_s,
+    "username" => "HappinessBot"}.to_json,
+    headers: {'content-type'=>'application/json'}
 
 end

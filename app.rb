@@ -166,17 +166,18 @@ def post_happy_gif_test_response payload
 
   slack_webhook = ENV['TEST_WEBHOOK_URL']
   payload = JSON.parse(payload)
-  puts payload
-  payload_type = payload.is_a?(Hash)
-  puts "Ppayload is hash = " + payload_type.to_s
-  payload_type = payload.is_a?(String)
-  puts "Payload is string = " + payload_type.to_s
+  # puts payload
+  # payload_type = payload.is_a?(Hash)
+  # puts "Ppayload is hash = " + payload_type.to_s
+  # payload_type = payload.is_a?(String)
+  # puts "Payload is string = " + payload_type.to_s
   # JSON.parse(payload)
   # puts payload
   # payload_type = payload.is_a?(Hash) # I think the issue is that JSON can't parse the [ ] brackets in the string...
   # puts payload[:type]
 
-  # message = payload[:actions][:action_id]
+  message = payload["actions"][0]["action_id"]
+  puts message
   #
   # actions = payload[:actions]
   # if actions[:action_id] == 'gif_no_button' # User didn't like gif
@@ -209,12 +210,14 @@ def post_happy_gif_test_response payload
   # HTTParty.post slack_webhook,
   #               body:params_hash.to_json,
   #               headers: {'content-type' => 'application/json'}
-  actions = payload["actions"][0] #Try using payload["actions"][0] instead
-  puts actions
-  actions_type = actions.is_a?(Hash)
-  puts "actions is hash = " + actions_type.to_s
-  actions_type = actions.is_a?(String)
-  puts "actions is string = " + actions_type.to_s
+  # actions = payload["actions"][0] #Try using payload["actions"][0] instead
+  # puts actions
+  # actions_type = actions.is_a?(Hash)
+  # puts "actions is hash = " + actions_type.to_s
+  # actions_type = actions.is_a?(String)
+  # puts "actions is string = " + actions_type.to_s
+
+
 
   # HTTParty.post slack_webhook, body:
   # {"text" => actions.to_s,
@@ -222,7 +225,7 @@ def post_happy_gif_test_response payload
   #   headers: {'content-type'=>'application/json'}
 
   HTTParty.post slack_webhook, body:
-  {"text" => actions["text"]["value"].to_s,
+  {"text" => message,
     "username" => "HappinessBot"}.to_json,
     headers: {'content-type'=>'application/json'}
 

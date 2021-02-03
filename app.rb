@@ -166,7 +166,7 @@ def post_happy_gif_test_response payload
 
   slack_webhook = ENV['TEST_WEBHOOK_URL']
   payload = JSON.parse(payload)
-  puts payload
+  puts payload.to_s
   # Construct HappinessBot message
   # message = payload["actions"][0]["action_id"]
   #
@@ -177,7 +177,7 @@ def post_happy_gif_test_response payload
   #
   #
   #
-  
+
   # # Image block
   # image_title = {"type" => "plain_text",
   #                 "text" => response["data"]["title"] + " Powered by Giphy"}

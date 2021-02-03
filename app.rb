@@ -246,10 +246,9 @@ def post_happy_gif_test_response payload
                 body: params_hash.to_json,
                 headers: {'content-type' => 'application/json'}
 
-    # HTTParty.post slack_webhook, body:
-    # {"text" => message,
-    #   "username" => "HappinessBot"}.to_json,
-    #   headers: {'content-type'=>'application/json'}
-  # end
+  # Close message dialogue
+  HTTParty.post payload["response_url"], body: {"delete_original": true}
+
+  end
 
 end

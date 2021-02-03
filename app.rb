@@ -249,7 +249,7 @@ def post_happy_gif_test_response payload
   end
 
   # Close message dialogue
-  HTTParty.post payload["response_url"], body: {"delete_original": true}
+  HTTParty.post payload["response_url"], body: {"delete_original": "true"}
 
 
 end

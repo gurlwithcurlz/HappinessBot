@@ -211,10 +211,10 @@ def post_happy_gif_test_response payload
   #               headers: {'content-type' => 'application/json'}
   actions = JSON.parse(payload["actions"][0]) #Try using payload["actions"][0] instead
   puts actions
-  actions_type = payload.is_a?(Hash)
-  puts "actions is hash = " + payload_type.to_s
-  actions_type = payload.is_a?(String)
-  puts "actions is string = " + payload_type.to_s
+  actions_type = actions.is_a?(Hash)
+  puts "actions is hash = " + actions.to_s
+  actions_type = actions.is_a?(String)
+  puts "actions is string = " + actions.to_s
 
   HTTParty.post slack_webhook, body:
   {"text" => actions[:text][:value].to_s,

@@ -209,7 +209,7 @@ def post_happy_gif_test_response payload
   # HTTParty.post slack_webhook,
   #               body:params_hash.to_json,
   #               headers: {'content-type' => 'application/json'}
-  actions = payload[:value] #Try using payload["actions"][0] instead
+  actions = payload["value"] #Try using payload["actions"][0] instead
   puts actions
   actions_type = actions.is_a?(Hash)
   puts "actions is hash = " + actions.to_s

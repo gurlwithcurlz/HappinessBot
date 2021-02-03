@@ -215,7 +215,8 @@ def post_happy_gif_test_response payload
   #   "username" => "HappinessBot"}.to_json,
   #   headers: {'content-type'=>'application/json'}
 
-  puts "if statement working = " + (payload["actions"][0]["text"]["text"]=="yes").to_s
+  if_flag = (payload["actions"][0]["text"]["text"]=="yes")
+  puts "if statement working = " + if_flag.to_s
 
   if payload["actions"][0]["text"]["text"]=="yes"
 

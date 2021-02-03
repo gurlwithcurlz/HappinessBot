@@ -240,15 +240,16 @@ def post_happy_gif_test_response payload
   # if_flag = (payload["actions"][0]["text"]["text"]=="yes")
   # puts "if statement working = " + if_flag.to_s
 
-  # if payload["actions"][0]["text"]["text"]=="yes"
+  if payload["actions"][0]["text"]["text"]=="yes"
 
-  HTTParty.post slack_webhook,
-                body: params_hash.to_json,
-                headers: {'content-type' => 'application/json'}
+    HTTParty.post slack_webhook,
+                  body: params_hash.to_json,
+                  headers: {'content-type' => 'application/json'}
+
+  end
 
   # Close message dialogue
   HTTParty.post payload["response_url"], body: {"delete_original": true}
 
-  end
 
 end

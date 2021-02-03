@@ -112,7 +112,7 @@ def post_happy_gif_test response_url, message
   button_yes = {
     "type" => "button",
     "text" => button_text_yes,
-    "action_id" => "gif_yes_button",
+    "action_id" => message,
     "value" => response["data"]["images"]["downsized"]["url"]
   }
 
@@ -224,9 +224,12 @@ def post_happy_gif_test_response payload
   #   "username" => "HappinessBot"}.to_json,
   #   headers: {'content-type'=>'application/json'}
 
-  HTTParty.post slack_webhook, body:
-  {"text" => message,
-    "username" => "HappinessBot"}.to_json,
-    headers: {'content-type'=>'application/json'}
+
+  if payload["actions"][0]["text"]["text"]=="yes"
+    HTTParty.post slack_webhook, body:
+    {"text" => message,
+      "username" => "HappinessBot"}.to_json,
+      headers: {'content-type'=>'application/json'}
+  end
 
 end

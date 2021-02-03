@@ -248,6 +248,8 @@ def post_happy_gif_test_response payload
 
   end
 
+  # THis does not currently work
+  puts payload["response_url"]
   # Close message dialogue
   HTTParty.post payload["response_url"],
                 body: {"delete_original": "true"},

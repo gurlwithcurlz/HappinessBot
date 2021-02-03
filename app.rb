@@ -166,18 +166,9 @@ def post_happy_gif_test_response payload
 
   slack_webhook = ENV['TEST_WEBHOOK_URL']
   payload = JSON.parse(payload)
-  # puts payload
-  # payload_type = payload.is_a?(Hash)
-  # puts "Ppayload is hash = " + payload_type.to_s
-  # payload_type = payload.is_a?(String)
-  # puts "Payload is string = " + payload_type.to_s
-  # JSON.parse(payload)
-  # puts payload
-  # payload_type = payload.is_a?(Hash) # I think the issue is that JSON can't parse the [ ] brackets in the string...
-  # puts payload[:type]
 
-  message = payload["actions"][0]["action_id"]
-  puts message
+  # Construct HappinessBot message
+  # message = payload["actions"][0]["action_id"]
   #
   # actions = payload[:actions]
   # if actions[:action_id] == 'gif_no_button' # User didn't like gif
@@ -186,26 +177,26 @@ def post_happy_gif_test_response payload
   #
   #
   #
-  # # Image block
-  # image_title = {"type" => "plain_text",
-  #                 "text" =>" Powered by Giphy"}
-  #
-  # image_block = {"type"=>"image",
-  #   "image_url"=>gif_url,
-  #   "alt_text"=>'test',
-  #   "title"=>image_title}
-  #
-  # # Text block
-  # text_info = {"type"=>"plain_text", "text"=>'test'}
-  # text_block = {"type"=>"section", "text"=>text_info}
-  #
-  # # Combine blocks
-  # blocks=[]
-  # blocks << text_block
-  # blocks << image_block
-  #
-  # params_hash={}
-  # params_hash[:blocks]=blocks
+  # Image block
+  image_title = {"type" => "plain_text",
+                  "text" =>" Powered by Giphy"}
+
+  image_block = {"type"=>"image",
+    "image_url"=> payload["actions"][0]["text"]["value"],
+    "alt_text"=> payload["actions"][0]["action_id"],
+    "title"=>image_title}
+
+  # Text block
+  text_info = {"type"=>"plain_text", payload["actions"][0]["action_id"]}
+  text_block = {"type"=>"section", "text"=>text_info}
+
+  # Combine blocks
+  blocks=[]
+  blocks << text_block
+  blocks << image_block
+
+  params_hash={}
+  params_hash[:blocks]=blocks
 
   # HTTParty.post slack_webhook,
   #               body:params_hash.to_json,
@@ -226,10 +217,14 @@ def post_happy_gif_test_response payload
 
 
   if payload["actions"][0]["text"]["text"]=="yes"
-    HTTParty.post slack_webhook, body:
-    {"text" => message,
-      "username" => "HappinessBot"}.to_json,
-      headers: {'content-type'=>'application/json'}
+    HTTParty.post slack_webhook,
+                  body:params_hash.to_json,
+                  headers: {'content-type' => 'application/json'}
+
+    # HTTParty.post slack_webhook, body:
+    # {"text" => message,
+    #   "username" => "HappinessBot"}.to_json,
+    #   headers: {'content-type'=>'application/json'}
   end
 
 end

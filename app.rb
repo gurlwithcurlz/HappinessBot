@@ -177,26 +177,27 @@ def post_happy_gif_test_response payload
   #
   #
   #
-  # Image block
-  image_title = {"type" => "plain_text",
-                  "text" => response["data"]["title"] + " Powered by Giphy"}
-
-  image_block = {"type"=>"image",
-    "image_url"=>response["data"]["images"]["downsized"]["url"],
-    "alt_text"=>message,
-    "title"=>image_title}
-
-  # Text block
-  text_info = {"type"=>"plain_text", "text"=>message}
-  text_block = {"type"=>"section", "text"=>text_info}
-
-  # Combine blocks
-  blocks=[]
-  blocks << text_block
-  blocks << image_block
-
-  params_hash={}
-  params_hash[:blocks]=blocks
+  
+  # # Image block
+  # image_title = {"type" => "plain_text",
+  #                 "text" => response["data"]["title"] + " Powered by Giphy"}
+  #
+  # image_block = {"type"=>"image",
+  #   "image_url"=>response["data"]["images"]["downsized"]["url"],
+  #   "alt_text"=>message,
+  #   "title"=>image_title}
+  #
+  # # Text block
+  # text_info = {"type"=>"plain_text", "text"=>message}
+  # text_block = {"type"=>"section", "text"=>text_info}
+  #
+  # # Combine blocks
+  # blocks=[]
+  # blocks << text_block
+  # blocks << image_block
+  #
+  # params_hash={}
+  # params_hash[:blocks]=blocks
 
   # Image block
   image_title = {"type" => "plain_text",

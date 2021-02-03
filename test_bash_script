@@ -1,6 +1,6 @@
 #!/bin/sh
 
 git add .
-git commit -m "Hackday PL 27012021"
+git commit -m "PL 03022021"
 git push
 git push heroku git-integration:master

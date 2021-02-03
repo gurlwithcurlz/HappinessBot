@@ -215,10 +215,12 @@ def post_happy_gif_test_response payload
   #   "username" => "HappinessBot"}.to_json,
   #   headers: {'content-type'=>'application/json'}
 
+  puts "if statement working = " + (payload["actions"][0]["text"]["text"]=="yes").to_s
 
   if payload["actions"][0]["text"]["text"]=="yes"
+
     HTTParty.post slack_webhook,
-                  body:params_hash.to_json,
+                  body: params_hash.to_json,
                   headers: {'content-type' => 'application/json'}
 
     # HTTParty.post slack_webhook, body:

@@ -187,7 +187,7 @@ def post_happy_gif_test_response payload
     "title"=>image_title}
 
   # Text block
-  text_info = {"type"=> "plain_text", "text"=> payload["actions"][0]["action_id"]}
+  text_info = {"type"=> "plain_text", "text"=> payload["actions"][0]["action_id"] }
   text_block = {"type"=> "section", "text"=> text_info}
 
   # Combine blocks

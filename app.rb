@@ -125,8 +125,8 @@ def post_happy_gif_test response_url, message
   button_no = {
     "type" => "button",
     "text" => button_text_no,
-    "action_id" => message,
-    "value" => "gif_no",
+    "action_id" => "gif_no_button",
+    "value" => message,
     "style" => "default"
   }
 
@@ -214,28 +214,6 @@ def post_happy_gif_test_response payload
   # params_hash={}
   # params_hash[:blocks]=blocks
 
-  # Image block
-  image_title = {"type" => "plain_text",
-                 "text" =>" Powered by Giphy"}
-
-  image_block = {"type"=>"image",
-    "image_url"=> payload["actions"][0]["value"],
-    "alt_text"=> payload["actions"][0]["action_id"],
-    "title"=>image_title}
-
-  # Text block
-  text_info = {"type"=> "plain_text", "text"=> payload["actions"][0]["action_id"] }
-  text_block = {"type"=> "section", "text"=> text_info}
-
-  # Combine blocks
-  blocks=[]
-  blocks << text_block
-  blocks << image_block
-
-  params_hash={}
-  params_hash[:blocks]=blocks
-
-
 
   # HTTParty.post slack_webhook, body:
   # {"text" => actions.to_s,
@@ -246,15 +224,32 @@ def post_happy_gif_test_response payload
   # puts "if statement working = " + if_flag.to_s
 
   if payload["actions"][0]["text"]["text"]=="yes"
+    # Image block
+    image_title = {"type" => "plain_text",
+                   "text" =>" Powered by Giphy"}
+
+    image_block = {"type"=>"image",
+      "image_url"=> payload["actions"][0]["value"],
+      "alt_text"=> payload["actions"][0]["action_id"],
+      "title"=>image_title}
+
+    # Text block
+    text_info = {"type"=> "plain_text", "text"=> payload["actions"][0]["action_id"] }
+    text_block = {"type"=> "section", "text"=> text_info}
+
+    # Combine blocks
+    blocks=[]
+    blocks << text_block
+    blocks << image_block
+
+    params_hash={}
+    params_hash[:blocks]=blocks
+
 
     HTTParty.post slack_webhook,
                   body: params_hash.to_json,
                   headers: {'content-type' => 'application/json'}
 
-
-    # Close the message
-    puts payload["response_url"]
-    # Close message dialogue
     HTTParty.post payload["response_url"],
                   body: {"delete_original" => "true"}.to_json,
                   headers: {'content-type' => 'application/json'}
@@ -262,9 +257,6 @@ def post_happy_gif_test_response payload
   end
 
   if payload["actions"][0]["text"]["text"]=="cancel"
-    # Close the message
-    puts payload["response_url"]
-    # Close message dialogue
     HTTParty.post payload["response_url"],
                   body: {"delete_original" => "true"}.to_json,
                   headers: {'content-type' => 'application/json'}
@@ -274,7 +266,7 @@ def post_happy_gif_test_response payload
   if payload["actions"][0]["text"]["text"]=="no"
 
     giphy_api_key = ENV['GIPHY_API_KEY']
-    gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ message+ "&rating=G"
+    gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ payload["actions"][0]["value"]+ "&rating=G"
     response = HTTParty.get(gif_url)
 
     image_title = {"type" => "plain_text",
@@ -282,7 +274,7 @@ def post_happy_gif_test_response payload
     # Image block
     image_block = {"type"=>"image",
     "image_url"=> response["data"]["images"]["downsized"]["url"],
-    "alt_text"=> payload["actions"][0]["action_id"],
+    "alt_text"=> payload["actions"][0]["value"],
     "title"=> image_title}
 
     params_hash = {"replace_original" => "true"}

@@ -146,7 +146,7 @@ def post_happy_gif_test response_url, message
   action_elements=[]
   action_elements << button_yes
   action_elements << button_no
-  # action_elements << button_cancel
+  action_elements << button_cancel
 
   actions_block = {
     "type" => "actions",
@@ -250,16 +250,16 @@ def post_happy_gif_test_response payload
                   body: params_hash.to_json,
                   headers: {'content-type' => 'application/json'}
 
-    HTTParty.post payload["response_url"],
-                  body: {"delete_original" => "true"}.to_json,
-                  headers: {'content-type' => 'application/json'}
+    # HTTParty.post payload["response_url"],
+    #               body: {"delete_original" => "true"}.to_json,
+    #               headers: {'content-type' => 'application/json'}
 
   end
 
   if payload["actions"][0]["text"]["text"]=="no"
-    HTTParty.post payload["response_url"],
-                  body: {"delete_original" => "true"}.to_json,
-                  headers: {'content-type' => 'application/json'}
+    # HTTParty.post payload["response_url"],
+    #               body: {"delete_original" => "true"}.to_json,
+    #               headers: {'content-type' => 'application/json'}
 
   end
 

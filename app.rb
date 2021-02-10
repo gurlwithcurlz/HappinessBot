@@ -127,7 +127,7 @@ def post_happy_gif_test response_url, message
     "text" => button_text_no,
     "action_id" => "gif_no_button",
     "value" => message,
-    # "style" => "default"
+    "style" => "default"
   }
 
   button_text_cancel = {
@@ -146,7 +146,7 @@ def post_happy_gif_test response_url, message
   action_elements=[]
   action_elements << button_yes
   action_elements << button_no
-  # action_elements << button_cancel
+  action_elements << button_cancel
 
   actions_block = {
     "type" => "actions",
@@ -276,6 +276,9 @@ def post_happy_gif_test_response payload
     "image_url"=> response["data"]["images"]["downsized"]["url"],
     "alt_text"=> payload["actions"][0]["value"],
     "title"=> image_title}
+
+    blocks=[]
+    blocks << image_block
 
     params_hash = {"replace_original" => "true"}
     params_hash[:blocks]=blocks

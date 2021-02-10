@@ -1,6 +1,6 @@
 #!/bin/sh
 
 git add .
-git commit -m "PL 10022021, test style"
+git commit -m "PL 10022021, Heroku not updating"
 git push
-git push heroku git-integration:master
+git push heroku gif-integration:master

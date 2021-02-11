@@ -1,6 +1,6 @@
 #!/bin/sh
 
 git add .
-git commit -m "Colour code and add cancel button(s)"
+git commit -m "Fix typo"
 git push
 git push heroku gif-integration:master

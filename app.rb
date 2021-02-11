@@ -113,7 +113,7 @@ def post_happy_gif_test response_url, message
     "type" => "button",
     "text" => button_text_yes,
     "action_id" => message,
-    "value" => response["data"]["images"]["downsized"]["url"] #,
+    "value" => response["data"]["images"]["downsized"]["url"],
     "style" => "primary"
   }
 
@@ -126,7 +126,7 @@ def post_happy_gif_test response_url, message
     "type" => "button",
     "text" => button_text_no,
     "action_id" => "gif_no_button",
-    "value" => message #,
+    "value" => message,
     "style" => "default"
   }
 

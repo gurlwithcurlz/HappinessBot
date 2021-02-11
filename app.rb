@@ -114,7 +114,7 @@ def post_happy_gif_test response_url, message
     "text" => button_text_yes,
     "action_id" => message,
     "value" => response["data"]["images"]["downsized"]["url"],
-    "style" => "primary"
+    # "style" => "primary"
   }
 
   button_text_no = {
@@ -127,7 +127,7 @@ def post_happy_gif_test response_url, message
     "text" => button_text_no,
     "action_id" => "gif_no_button",
     "value" => message,
-    "style" => "default"
+    # "style" => "default"
   }
 
   button_text_cancel = {

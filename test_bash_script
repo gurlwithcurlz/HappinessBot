@@ -1,6 +1,6 @@
 #!/bin/sh
 
 git add .
-git commit -m "Fix typo"
+git commit -m "Debug"
 git push
 git push heroku gif-integration:master

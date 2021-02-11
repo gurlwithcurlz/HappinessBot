@@ -62,30 +62,30 @@ def post_happy_gif message
   gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ message+ "&rating=G"
   response = HTTParty.get(gif_url)
 
-# Image block
-image_title = {"type" => "plain_text",
-                "text" => response["data"]["title"] + " Powered by Giphy"}
+  # Image block
+  image_title = {"type" => "plain_text",
+                  "text" => response["data"]["title"] + " Powered by Giphy"}
 
-image_block = {"type"=>"image",
-  "image_url"=>response["data"]["images"]["downsized"]["url"],
-  "alt_text"=>message,
-  "title"=>image_title}
+  image_block = {"type"=>"image",
+    "image_url"=>response["data"]["images"]["downsized"]["url"],
+    "alt_text"=>message,
+    "title"=>image_title}
 
-# Text block
-text_info = {"type"=>"plain_text", "text"=>message}
-text_block = {"type"=>"section", "text"=>text_info}
+  # Text block
+  text_info = {"type"=>"plain_text", "text"=>message}
+  text_block = {"type"=>"section", "text"=>text_info}
 
-# Combine blocks
-blocks=[]
-blocks << text_block
-blocks << image_block
+  # Combine blocks
+  blocks=[]
+  blocks << text_block
+  blocks << image_block
 
-params_hash={}
-params_hash[:blocks]=blocks
+  params_hash={}
+  params_hash[:blocks]=blocks
 
-HTTParty.post slack_webhook,
-              body:params_hash.to_json,
-              headers: {'content-type' => 'application/json'}
+  HTTParty.post slack_webhook,
+                body:params_hash.to_json,
+                headers: {'content-type' => 'application/json'}
 
 end
 
@@ -113,8 +113,8 @@ def post_happy_gif_test response_url, message
     "type" => "button",
     "text" => button_text_yes,
     "action_id" => message,
-    "value" => response["data"]["images"]["downsized"]["url"],
-    "style" => "primary"
+    "value" => response["data"]["images"]["downsized"]["url"] #,
+    # "style" => "primary"
   }
 
   button_text_no = {
@@ -126,27 +126,27 @@ def post_happy_gif_test response_url, message
     "type" => "button",
     "text" => button_text_no,
     "action_id" => "gif_no_button",
-    "value" => message,
-    "style" => "default"
+    "value" => message #,
+    # "style" => "default"
   }
 
-  button_text_cancel = {
-    "type" => "plain_text",
-    "text" => "cancel"
-  }
+  # button_text_cancel = {
+  #   "type" => "plain_text",
+  #   "text" => "cancel"
+  # }
 
-  button_cancel = {
-    "type" => "button",
-    "text" => button_text_cancel,
-    "action_id" => "gif_cancel_button",
-    "value" => "gif_cancel",
-    "style" => "danger"
-  }
+  # button_cancel = {
+  #   "type" => "button",
+  #   "text" => button_text_cancel,
+  #   "action_id" => "gif_cancel_button",
+  #   "value" => "gif_cancel",
+  #   "style" => "danger"
+  # }
 
   action_elements=[]
   action_elements << button_yes
   action_elements << button_no
-  action_elements << button_cancel
+  # action_elements << button_cancel
 
   actions_block = {
     "type" => "actions",

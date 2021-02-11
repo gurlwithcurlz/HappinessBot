@@ -1,6 +1,6 @@
 #!/bin/sh
 
 git add .
-git commit -m "PL 10022021, Heroku not updating"
+git commit -m "Colour code and add cancel button(s)"
 git push
 git push heroku gif-integration:master

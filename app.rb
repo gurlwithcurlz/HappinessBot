@@ -114,7 +114,7 @@ def post_happy_gif_test response_url, message
     "text" => button_text_yes,
     "action_id" => message,
     "value" => response["data"]["images"]["downsized"]["url"] #,
-    # "style" => "primary"
+    "style" => "primary"
   }
 
   button_text_no = {
@@ -127,26 +127,26 @@ def post_happy_gif_test response_url, message
     "text" => button_text_no,
     "action_id" => "gif_no_button",
     "value" => message #,
-    # "style" => "default"
+    "style" => "default"
   }
 
-  # button_text_cancel = {
-  #   "type" => "plain_text",
-  #   "text" => "cancel"
-  # }
+  button_text_cancel = {
+    "type" => "plain_text",
+    "text" => "cancel"
+  }
 
-  # button_cancel = {
-  #   "type" => "button",
-  #   "text" => button_text_cancel,
-  #   "action_id" => "gif_cancel_button",
-  #   "value" => "gif_cancel",
-  #   "style" => "danger"
-  # }
+  button_cancel = {
+    "type" => "button",
+    "text" => button_text_cancel,
+    "action_id" => "gif_cancel_button",
+    "value" => "gif_cancel",
+    "style" => "danger"
+  }
 
   action_elements=[]
   action_elements << button_yes
   action_elements << button_no
-  # action_elements << button_cancel
+  action_elements << button_cancel
 
   actions_block = {
     "type" => "actions",
@@ -256,41 +256,41 @@ def post_happy_gif_test_response payload
 
   end
 
-  if payload["actions"][0]["text"]["text"]=="no"
+  if payload["actions"][0]["text"]["text"]=="cancel"
     HTTParty.post payload["response_url"],
                   body: {"delete_original" => "true"}.to_json,
                   headers: {'content-type' => 'application/json'}
 
   end
 
-  # This code may not work. Hat issues with heroku being down to know what's the issue. Now just not posting at all ??
-  if payload["actions"][0]["text"]["text"]=="no"
-
-    giphy_api_key = ENV['GIPHY_API_KEY']
-    gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ payload["actions"][0]["value"]+ "&rating=G"
-    response = HTTParty.get(gif_url)
-
-    image_title = {"type" => "plain_text",
-                  "text" => response["data"]["title"] + " Powered by Giphy"}
-    # Image block
-    image_block = {"type"=>"image",
-    "image_url"=> response["data"]["images"]["downsized"]["url"],
-    "alt_text"=> payload["actions"][0]["value"],
-    "title"=> image_title}
-
-    blocks=[]
-    blocks << image_block
-
-    params_hash = {"replace_original" => "true"}
-    params_hash[:blocks]=blocks
-
-    # Close the message
-    puts payload["response_url"]
-    # Close message dialogue
-    HTTParty.post payload["response_url"],
-                  body: params_hash.to_json,
-                  headers: {'content-type' => 'application/json'}
-
-  end
+  # # This code may not work. Hat issues with heroku being down to know what's the issue. Now just not posting at all ??
+  # if payload["actions"][0]["text"]["text"]=="no"
+  #
+  #   giphy_api_key = ENV['GIPHY_API_KEY']
+  #   gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ payload["actions"][0]["value"]+ "&rating=G"
+  #   response = HTTParty.get(gif_url)
+  #
+  #   image_title = {"type" => "plain_text",
+  #                 "text" => response["data"]["title"] + " Powered by Giphy"}
+  #   # Image block
+  #   image_block = {"type"=>"image",
+  #   "image_url"=> response["data"]["images"]["downsized"]["url"],
+  #   "alt_text"=> payload["actions"][0]["value"],
+  #   "title"=> image_title}
+  #
+  #   blocks=[]
+  #   blocks << image_block
+  #
+  #   params_hash = {"replace_original" => "true"}
+  #   params_hash[:blocks]=blocks
+  #
+  #   # Close the message
+  #   puts payload["response_url"]
+  #   # Close message dialogue
+  #   HTTParty.post payload["response_url"],
+  #                 body: params_hash.to_json,
+  #                 headers: {'content-type' => 'application/json'}
+  #
+  # end
 
 end

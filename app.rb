@@ -281,7 +281,7 @@ def post_happy_gif_test_response payload
 
     blocks = []
 
-    # blocks << payload["text"]
+    blocks << payload["text"]
     blocks << image_block
     # blocks << payload["actions"]
 

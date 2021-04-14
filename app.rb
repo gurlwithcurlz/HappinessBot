@@ -269,10 +269,10 @@ def post_happy_gif_test_response payload
     # We want to replace the options with a new option
     # First set up the parts of the dialogue that will be the same (we have lost that info, I think)
 
-    # # Text block
-    # text_info = {"type"=>"plain_text", "text"=>"Are you happy with this gif?"}
-    # text_block = {"type"=>"section", "text"=>text_info}
-    #
+    # Text block
+    text_info = {"type"=>"plain_text", "text"=>"Are you happy with this gif?"}
+    text_block = {"type"=>"section", "text"=>text_info}
+
     # # Attachment block
     # button_text_yes = {
     #   "type" => "plain_text",
@@ -338,7 +338,7 @@ def post_happy_gif_test_response payload
 
     # Combine unchanged (text and aciton) and changed (image) blocks
     blocks=[]
-    # blocks << text_block
+    blocks << text_block
     blocks << image_block
     # blocks << actions_block
 

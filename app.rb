@@ -263,47 +263,97 @@ def post_happy_gif_test_response payload
 
   end
 
-  # Basically
+
   if payload["actions"][0]["text"]["text"]=="no"
 
-    #The following kinda works, but just posts a new gif.
+    # We want to replace the options with a new option
+    # First set up the parts of the dialogue that will be the same (we have lost that info, I think)
+
+    # Text block
+    text_info = {"type"=>"plain_text", "text"=>"Are you happy with this gif?"}
+    text_block = {"type"=>"section", "text"=>text_info}
+
+    # Attachment block
+    button_text_yes = {
+      "type" => "plain_text",
+      "text" => "yes"
+    }
+
+    button_yes = {
+      "type" => "button",
+      "text" => button_text_yes,
+      "action_id" => message,
+      "value" => response["data"]["images"]["downsized"]["url"],
+      # "style" => "primary"
+    }
+
+    button_text_no = {
+      "type" => "plain_text",
+      "text" => "no"
+    }
+
+    button_no = {
+      "type" => "button",
+      "text" => button_text_no,
+      "action_id" => "gif_no_button",
+      "value" => message,
+      # "style" => "default"
+    }
+
+    button_text_cancel = {
+      "type" => "plain_text",
+      "text" => "cancel"
+    }
+
+    button_cancel = {
+      "type" => "button",
+      "text" => button_text_cancel,
+      "action_id" => "gif_cancel_button",
+      "value" => "gif_cancel",
+      "style" => "danger"
+    }
+
+    action_elements=[]
+    action_elements << button_yes
+    action_elements << button_no
+    action_elements << button_cancel
+
+    actions_block = {
+      "type" => "actions",
+      "elements" => action_elements
+    }
+
+    # Now get a new image from giphy and replace image block
     giphy_api_key = ENV['GIPHY_API_KEY']
     gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ payload["actions"][0]["value"]+ "&rating=G"
     response = HTTParty.get(gif_url)
 
     image_title = {"type" => "plain_text",
                   "text" => response["data"]["title"] + " Powered by Giphy"}
-    # Image block
+
     image_block = {"type"=>"image",
     "image_url"=> response["data"]["images"]["downsized"]["url"],
     "alt_text"=> payload["actions"][0]["value"],
     "title"=> image_title}
 
-    puts "What is this payload"
-    puts payload.to_s
-    blocks = []
-
-    blocks << payload["text"]
+    # Combine unchanged (text and aciton) and changed (image) blocks
+    blocks=[]
+    blocks << text_block
     blocks << image_block
-    # blocks << payload["actions"]
+    blocks << actions_block
 
+    # Don't create a new dialogue, replace it instead
+
+    # Replace the message
     params_hash = {"replace_original" => "true"}
     params_hash[:blocks]=blocks
-
-    # Close the message
-    puts payload["response_url"]
+    # puts payload["response_url"]
     # Close message dialogue
     HTTParty.post payload["response_url"],
                   body: params_hash.to_json,
                   headers: {'content-type' => 'application/json'}
 
-    # ## Try to post it back
-    # giphy_api_key = ENV['GIPHY_API_KEY']
-    # gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ payload["actions"][0]["value"]+ "&rating=G"
-    # response = HTTParty.get(gif_url)
-
-
-
+    
 
 
   end

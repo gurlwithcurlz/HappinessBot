@@ -1,6 +1,6 @@
 #!/bin/sh
 
 git add .
-git commit -m "Debug"
+git commit -m "14042021_nearly_there"
 git push
 git push heroku gif-integration:master

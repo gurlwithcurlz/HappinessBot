@@ -273,19 +273,19 @@ def post_happy_gif_test_response payload
     text_info = {"type"=>"plain_text", "text"=>"Are you happy with this gif?"}
     text_block = {"type"=>"section", "text"=>text_info}
 
-    # # Attachment block
-    # button_text_yes = {
-    #   "type" => "plain_text",
-    #   "text" => "yes"
-    # }
-    #
-    # button_yes = {
-    #   "type" => "button",
-    #   "text" => button_text_yes,
-    #   "action_id" => payload["actions"][0]["value"],
-    #   "value" => response["data"]["images"]["downsized"]["url"],
-    #   # "style" => "primary"
-    # }
+    # Attachment block
+    button_text_yes = {
+      "type" => "plain_text",
+      "text" => "yes"
+    }
+
+    button_yes = {
+      "type" => "button",
+      "text" => button_text_yes,
+      "action_id" => payload["actions"][0]["value"],
+      "value" => response["data"]["images"]["downsized"]["url"],
+      # "style" => "primary"
+    }
     #
     # button_text_no = {
     #   "type" => "plain_text",
@@ -340,7 +340,7 @@ def post_happy_gif_test_response payload
     blocks=[]
     blocks << text_block
     blocks << image_block
-    # blocks << actions_block
+    blocks << actions_block
 
     # Don't create a new dialogue, replace it instead
 

@@ -279,7 +279,11 @@ def post_happy_gif_test_response payload
     "alt_text"=> payload["actions"][0]["value"],
     "title"=> image_title}
 
-    blocks[1] = image_block
+    blocks = payload[]
+
+    blocks << payload["text"]
+    blocks << image_block
+    blocks << payload["actions"]
 
     params_hash = {"replace_original" => "true"}
     params_hash[:blocks]=blocks

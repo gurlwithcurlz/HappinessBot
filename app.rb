@@ -282,7 +282,7 @@ def post_happy_gif_test_response payload
     button_yes = {
       "type" => "button",
       "text" => button_text_yes,
-      "action_id" => message,
+      "action_id" => payload["actions"][0]["value"],
       "value" => response["data"]["images"]["downsized"]["url"],
       # "style" => "primary"
     }
@@ -296,7 +296,7 @@ def post_happy_gif_test_response payload
       "type" => "button",
       "text" => button_text_no,
       "action_id" => "gif_no_button",
-      "value" => message,
+      "value" => payload["actions"][0]["value"],
       # "style" => "default"
     }
 
@@ -349,11 +349,12 @@ def post_happy_gif_test_response payload
     params_hash[:blocks]=blocks
     # puts payload["response_url"]
     # Close message dialogue
+    puts params_hash.to_s
     HTTParty.post payload["response_url"],
                   body: params_hash.to_json,
                   headers: {'content-type' => 'application/json'}
 
-    
+
 
 
   end

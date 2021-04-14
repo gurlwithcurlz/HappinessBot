@@ -313,15 +313,15 @@ def post_happy_gif_test_response payload
     #   "style" => "danger"
     # }
     #
-    # action_elements=[]
-    # action_elements << button_yes
+    action_elements=[]
+    action_elements << button_yes
     # action_elements << button_no
     # action_elements << button_cancel
     #
-    # actions_block = {
-    #   "type" => "actions",
-    #   "elements" => action_elements
-    # }
+    actions_block = {
+      "type" => "actions",
+      "elements" => action_elements
+    }
 
     # Now get a new image from giphy and replace image block
     giphy_api_key = ENV['GIPHY_API_KEY']

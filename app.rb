@@ -301,37 +301,37 @@ def post_happy_gif_test_response payload
       "value" => response["data"]["images"]["downsized"]["url"],
       # "style" => "primary"
     }
-    #
-    # button_text_no = {
-    #   "type" => "plain_text",
-    #   "text" => "no"
-    # }
-    #
-    # button_no = {
-    #   "type" => "button",
-    #   "text" => button_text_no,
-    #   "action_id" => "gif_no_button",
-    #   "value" => payload["actions"][0]["value"],
-    #   # "style" => "default"
-    # }
-    #
-    # button_text_cancel = {
-    #   "type" => "plain_text",
-    #   "text" => "cancel"
-    # }
-    #
-    # button_cancel = {
-    #   "type" => "button",
-    #   "text" => button_text_cancel,
-    #   "action_id" => "gif_cancel_button",
-    #   "value" => "gif_cancel",
-    #   "style" => "danger"
-    # }
-    #
+
+    button_text_no = {
+      "type" => "plain_text",
+      "text" => "no"
+    }
+
+    button_no = {
+      "type" => "button",
+      "text" => button_text_no,
+      "action_id" => "gif_no_button",
+      "value" => payload["actions"][0]["value"],
+      # "style" => "default"
+    }
+
+    button_text_cancel = {
+      "type" => "plain_text",
+      "text" => "cancel"
+    }
+
+    button_cancel = {
+      "type" => "button",
+      "text" => button_text_cancel,
+      "action_id" => "gif_cancel_button",
+      "value" => "gif_cancel",
+      "style" => "danger"
+    }
+
     action_elements=[]
     action_elements << button_yes
-    # action_elements << button_no
-    # action_elements << button_cancel
+    action_elements << button_no
+    action_elements << button_cancel
     #
     actions_block = {
       "type" => "actions",

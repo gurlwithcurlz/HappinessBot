@@ -1,6 +1,6 @@
 #!/bin/sh
 
 git add .
-git commit -m "Hackday PL 28082020"
+git commit -m "gif integration, hooray!"
 git push
-git push heroku master
+git push heroku gif-integration:master

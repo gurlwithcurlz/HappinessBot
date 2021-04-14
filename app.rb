@@ -273,7 +273,22 @@ def post_happy_gif_test_response payload
     text_info = {"type"=>"plain_text", "text"=>"Are you happy with this gif?"}
     text_block = {"type"=>"section", "text"=>text_info}
 
-    # Attachment block
+    ## Image and buttons will change (button values that are being passed are different)
+
+    # Now get a new image from giphy and replace image block
+    giphy_api_key = ENV['GIPHY_API_KEY']
+    gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ payload["actions"][0]["value"]+ "&rating=G"
+    response = HTTParty.get(gif_url)
+
+    image_title = {"type" => "plain_text",
+                  "text" => response["data"]["title"] + " Powered by Giphy"}
+
+    image_block = {"type"=>"image",
+    "image_url"=> response["data"]["images"]["downsized"]["url"],
+    "alt_text"=> payload["actions"][0]["value"],
+    "title"=> image_title}
+
+    # Action block (that holds buttons)
     button_text_yes = {
       "type" => "plain_text",
       "text" => "yes"
@@ -323,18 +338,6 @@ def post_happy_gif_test_response payload
       "elements" => action_elements
     }
 
-    # Now get a new image from giphy and replace image block
-    giphy_api_key = ENV['GIPHY_API_KEY']
-    gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ payload["actions"][0]["value"]+ "&rating=G"
-    response = HTTParty.get(gif_url)
-
-    image_title = {"type" => "plain_text",
-                  "text" => response["data"]["title"] + " Powered by Giphy"}
-
-    image_block = {"type"=>"image",
-    "image_url"=> response["data"]["images"]["downsized"]["url"],
-    "alt_text"=> payload["actions"][0]["value"],
-    "title"=> image_title}
 
     # Combine unchanged (text and aciton) and changed (image) blocks
     blocks=[]

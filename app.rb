@@ -269,59 +269,59 @@ def post_happy_gif_test_response payload
     # We want to replace the options with a new option
     # First set up the parts of the dialogue that will be the same (we have lost that info, I think)
 
-    # Text block
-    text_info = {"type"=>"plain_text", "text"=>"Are you happy with this gif?"}
-    text_block = {"type"=>"section", "text"=>text_info}
-
-    # Attachment block
-    button_text_yes = {
-      "type" => "plain_text",
-      "text" => "yes"
-    }
-
-    button_yes = {
-      "type" => "button",
-      "text" => button_text_yes,
-      "action_id" => payload["actions"][0]["value"],
-      "value" => response["data"]["images"]["downsized"]["url"],
-      # "style" => "primary"
-    }
-
-    button_text_no = {
-      "type" => "plain_text",
-      "text" => "no"
-    }
-
-    button_no = {
-      "type" => "button",
-      "text" => button_text_no,
-      "action_id" => "gif_no_button",
-      "value" => payload["actions"][0]["value"],
-      # "style" => "default"
-    }
-
-    button_text_cancel = {
-      "type" => "plain_text",
-      "text" => "cancel"
-    }
-
-    button_cancel = {
-      "type" => "button",
-      "text" => button_text_cancel,
-      "action_id" => "gif_cancel_button",
-      "value" => "gif_cancel",
-      "style" => "danger"
-    }
-
-    action_elements=[]
-    action_elements << button_yes
-    action_elements << button_no
-    action_elements << button_cancel
-
-    actions_block = {
-      "type" => "actions",
-      "elements" => action_elements
-    }
+    # # Text block
+    # text_info = {"type"=>"plain_text", "text"=>"Are you happy with this gif?"}
+    # text_block = {"type"=>"section", "text"=>text_info}
+    #
+    # # Attachment block
+    # button_text_yes = {
+    #   "type" => "plain_text",
+    #   "text" => "yes"
+    # }
+    #
+    # button_yes = {
+    #   "type" => "button",
+    #   "text" => button_text_yes,
+    #   "action_id" => payload["actions"][0]["value"],
+    #   "value" => response["data"]["images"]["downsized"]["url"],
+    #   # "style" => "primary"
+    # }
+    #
+    # button_text_no = {
+    #   "type" => "plain_text",
+    #   "text" => "no"
+    # }
+    #
+    # button_no = {
+    #   "type" => "button",
+    #   "text" => button_text_no,
+    #   "action_id" => "gif_no_button",
+    #   "value" => payload["actions"][0]["value"],
+    #   # "style" => "default"
+    # }
+    #
+    # button_text_cancel = {
+    #   "type" => "plain_text",
+    #   "text" => "cancel"
+    # }
+    #
+    # button_cancel = {
+    #   "type" => "button",
+    #   "text" => button_text_cancel,
+    #   "action_id" => "gif_cancel_button",
+    #   "value" => "gif_cancel",
+    #   "style" => "danger"
+    # }
+    #
+    # action_elements=[]
+    # action_elements << button_yes
+    # action_elements << button_no
+    # action_elements << button_cancel
+    #
+    # actions_block = {
+    #   "type" => "actions",
+    #   "elements" => action_elements
+    # }
 
     # Now get a new image from giphy and replace image block
     giphy_api_key = ENV['GIPHY_API_KEY']

@@ -338,9 +338,9 @@ def post_happy_gif_test_response payload
 
     # Combine unchanged (text and aciton) and changed (image) blocks
     blocks=[]
-    blocks << text_block
+    # blocks << text_block
     blocks << image_block
-    blocks << actions_block
+    # blocks << actions_block
 
     # Don't create a new dialogue, replace it instead
 

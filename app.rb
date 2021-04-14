@@ -279,7 +279,8 @@ def post_happy_gif_test_response payload
     "alt_text"=> payload["actions"][0]["value"],
     "title"=> image_title}
 
-    print(payload.to_s)
+    puts "What is this payload"
+    puts payload.to_s
     blocks = []
 
     blocks << payload["text"]

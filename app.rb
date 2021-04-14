@@ -14,12 +14,6 @@ post '/happy' do
   params[:user_name]+',you are spreading the love!'
 end
 
-# post '/happygif' do
-#   status 200
-#   post_happy_gif params[:text]
-#   params[:user_name]+',you like to giphy!'
-# end
-
 post '/happygif' do
   status 200
   post_happy_gif params[:response_url], params[:text]

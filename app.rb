@@ -55,39 +55,6 @@ def post_happy message
 
 end
 
-# def post_happy_gif message
-#
-#   slack_webhook = ENV['SLACK_WEBHOOK_URL']
-#   giphy_api_key = '8x96A5YlCJRCqplr4gjULJW13sLtY6FV'
-#   gif_url = "https://api.giphy.com/v1/gifs/random?api_key=" + giphy_api_key + "&tag="+ message+ "&rating=G"
-#   response = HTTParty.get(gif_url)
-#
-#   # Image block
-#   image_title = {"type" => "plain_text",
-#                   "text" => response["data"]["title"] + " Powered by Giphy"}
-#
-#   image_block = {"type"=>"image",
-#     "image_url"=>response["data"]["images"]["downsized"]["url"],
-#     "alt_text"=>message,
-#     "title"=>image_title}
-#
-#   # Text block
-#   text_info = {"type"=>"plain_text", "text"=>message}
-#   text_block = {"type"=>"section", "text"=>text_info}
-#
-#   # Combine blocks
-#   blocks=[]
-#   blocks << text_block
-#   blocks << image_block
-#
-#   params_hash={}
-#   params_hash[:blocks]=blocks
-#
-#   HTTParty.post slack_webhook,
-#                 body:params_hash.to_json,
-#                 headers: {'content-type' => 'application/json'}
-#
-# end
 
 def post_happy_gif response_url, message
 
@@ -181,47 +148,6 @@ def post_happy_gif_response payload
 
   slack_webhook = ENV['SLACK_WEBHOOK_URL']
   payload = JSON.parse(payload)
-  puts payload.to_s
-  # Construct HappinessBot message
-  # message = payload["actions"][0]["action_id"]
-  #
-  # actions = payload[:actions]
-  # if actions[:action_id] == 'gif_no_button' # User didn't like gif
-  #   return
-  # gif_url = actions[:value]
-  #
-  #
-  #
-
-  # # Image block
-  # image_title = {"type" => "plain_text",
-  #                 "text" => response["data"]["title"] + " Powered by Giphy"}
-  #
-  # image_block = {"type"=>"image",
-  #   "image_url"=>response["data"]["images"]["downsized"]["url"],
-  #   "alt_text"=>message,
-  #   "title"=>image_title}
-  #
-  # # Text block
-  # text_info = {"type"=>"plain_text", "text"=>message}
-  # text_block = {"type"=>"section", "text"=>text_info}
-  #
-  # # Combine blocks
-  # blocks=[]
-  # blocks << text_block
-  # blocks << image_block
-  #
-  # params_hash={}
-  # params_hash[:blocks]=blocks
-
-
-  # HTTParty.post slack_webhook, body:
-  # {"text" => actions.to_s,
-  #   "username" => "HappinessBot"}.to_json,
-  #   headers: {'content-type'=>'application/json'}
-
-  # if_flag = (payload["actions"][0]["text"]["text"]=="yes")
-  # puts "if statement working = " + if_flag.to_s
 
   if payload["actions"][0]["text"]["text"]=="yes"
     # Image block

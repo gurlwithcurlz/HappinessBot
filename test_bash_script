@@ -1,6 +1,6 @@
 #!/bin/sh
 
 git add .
-git commit -m "yes - we got there"
+git commit -m "gif integration, hooray!"
 git push
 git push heroku gif-integration:master
